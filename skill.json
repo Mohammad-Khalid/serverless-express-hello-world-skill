@@ -21,7 +21,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "uri": "https://fscnfu1uxh.execute-api.us-east-1.amazonaws.com/prod/",
+          "uri": "<Cloud-Formation-Stack-Output-ApiUrl>",
           "sslCertificateType" : "Wildcard"
         }
       }

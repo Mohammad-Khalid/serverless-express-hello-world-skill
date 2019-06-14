@@ -3,7 +3,7 @@
 ### This is a simple tutorial to introduce a simple Alexa skill with Express-With-Lambda.
 
 ## Step 1 : 
-    Clone this [hello world skill](https://github.com/alexa/skill-sample-nodejs-hello-world.git)
+    Clone this [Serverless hello world skill](https://github.com/Mohammad-Khalid/serverless-express-hello-world-skill.git)
 
 ### Add express-server.js file
 
@@ -33,7 +33,8 @@ module.exports = app;
     We're using Cloud Formation to automate the process of deploying lambda and API gateway.
 
 Go to lambda folder and run the following command :
-    `npm run win-setup`
+
+>    `npm run setup`
 > For windows
     `npm run win-setup`
 
@@ -166,7 +167,7 @@ module.exports = app;
 
 ```
 
-> To update the above changes run the command in step 2.
+> To update the above changes run command in step 2.
 
 ## Step 4 :
 

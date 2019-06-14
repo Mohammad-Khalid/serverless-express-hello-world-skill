@@ -13,8 +13,8 @@ if ! command -v aws > /dev/null; then
     exit 1
 fi
 
-ACCOUNT_ID=`aws sts get-caller-identity --query 'Account' --output=text --profile khalid`
-REGION=`aws configure get region --profile khalid`
+ACCOUNT_ID=`aws sts get-caller-identity --query 'Account' --output=text`
+REGION=`aws configure get region`
 BUCKET_NAME="${ACCOUNT_ID}-${REGION}-serverless-express"
 
 NODE_DONE=`node scripts/configure.js --account-id ${ACCOUNT_ID} --region ${REGION} --function-name ${LAMBDA_NAME}`
@@ -26,7 +26,7 @@ if ! [[ ${ACCOUNT_ID} =~ ${DIGITS_RE} ]] ; then
 fi
 
 # Check if the bucket already exists
-BUCKETS_EXISTS=`aws s3 ls --profile khalid | grep ${BUCKET_NAME}`
+BUCKETS_EXISTS=`aws s3 ls | grep ${BUCKET_NAME}`
 
 if [ ! -z "${BUCKETS_EXISTS}" -a "${BUCKETS_EXISTS}" != " " ]; then
         echo "Bucket ${BUCKET_NAME} already exists."
@@ -34,7 +34,7 @@ if [ ! -z "${BUCKETS_EXISTS}" -a "${BUCKETS_EXISTS}" != " " ]; then
         # exit 1
         # Try to create the bucket
 else 
-    if aws s3 mb s3://${BUCKET_NAME} --profile khalid; then
+    if aws s3 mb s3://${BUCKET_NAME}; then
         echo "Bucket s3://${BUCKET_NAME} created successfully"
     else
         echo "Failed creating bucket s3://${BUCKET_NAME}"
@@ -44,7 +44,7 @@ fi
 
 
 # Try to create CloudFormation package
-if aws cloudformation package --template-file ${TEMPLATE_FILE_NAME} --output-template-file ${PACKAGE_FILE_NAME} --s3-bucket ${BUCKET_NAME} --profile khalid; then
+if aws cloudformation package --template-file ${TEMPLATE_FILE_NAME} --output-template-file ${PACKAGE_FILE_NAME} --s3-bucket ${BUCKET_NAME}; then
     echo "CloudFormation successfully created the package ${PACKAGE_FILE_NAME}"
 else
     echo "Failed creating CloudFormation package"
@@ -52,7 +52,7 @@ else
 fi
 
 # Try to deploy the package
-if aws cloudformation deploy --template-file ${PACKAGE_FILE_NAME} --stack-name ${STACK_NAME} --capabilities CAPABILITY_IAM --parameter-overrides StageName=${STAGE_NAME} --profile khalid; then
+if aws cloudformation deploy --template-file ${PACKAGE_FILE_NAME} --stack-name ${STACK_NAME} --capabilities CAPABILITY_IAM --parameter-overrides StageName=${STAGE_NAME}; then
     echo "CloudFormation successfully deployed the serverless app package"
 else
     echo "Failed deploying CloudFormation package"

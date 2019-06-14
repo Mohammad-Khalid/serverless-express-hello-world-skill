@@ -1,0 +1,18 @@
+{
+  "name": "serverless-express",
+  "version": "1.0.0",
+  "description": "Example application for running a Node Express app on AWS Lambda using Amazon API Gateway.",
+  "main": "lambda.js",
+  "scripts": {
+    "setup": "npm install && ./install.sh",
+    "win-setup": "npm install && bash ./install.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk-core": "^2.6.0",
+    "ask-sdk-model": "^1.16.0",
+    "aws-serverless-express": "^3.3.3",
+    "express": "^4.15.2"
+  }
+}

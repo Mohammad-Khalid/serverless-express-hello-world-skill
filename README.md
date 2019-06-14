@@ -1,6 +1,6 @@
-# Build An Alexa Hello World Skill With Express-With-Lambda
+# Build An Alexa Hello World Skill With Serverless-Express
 
-### This is a simple tutorial to introduce a simple Alexa skill with Express-With-Lambda.
+### This is a simple tutorial to introduce a simple Alexa skill with Serverless-Express.
 
 ## Step 1 : 
     Clone this [Serverless hello world skill](https://github.com/Mohammad-Khalid/serverless-express-hello-world-skill.git)
@@ -34,7 +34,8 @@ module.exports = app;
 
 Go to lambda folder and run the following command :
 
->    `npm run setup`
+> `npm run setup`.
+
 > For windows
     `npm run win-setup`
 

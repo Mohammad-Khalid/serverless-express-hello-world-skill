@@ -13,6 +13,6 @@
     "ask-sdk-core": "^2.6.0",
     "ask-sdk-model": "^1.16.0",
     "aws-serverless-express": "^3.3.3",
-    "express": "^4.15.2"
+    "express": "^4.17.3"
   }
 }
